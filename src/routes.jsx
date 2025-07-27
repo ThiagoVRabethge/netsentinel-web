@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom"
 import App from "./App"
-import RegisterUsers from "./pages/RegisterUsers"
+import Dashboard from "./pages/dashboard/Dashboard"
+import RegisterUsers from "./pages/registerUsers/RegisterUsers"
 
 const Routes = createBrowserRouter([
     {
@@ -10,6 +11,10 @@ const Routes = createBrowserRouter([
     {
         path: "/register-users",
         element: <RegisterUsers />,
+    },
+    {
+        path: "/dashboard",
+        element: <Dashboard />,
     },
 ])
 

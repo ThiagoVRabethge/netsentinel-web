@@ -1,17 +1,27 @@
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import Button from "./components/Button"
 import Input from "./components/Input"
 import Link from "./components/Link"
 import postLoginUsers from "./requests/auth/postLoginUsers"
+import useUserSessionStore from "./stores/userSessionStore"
 
 const App = () => {
+  const navigate = useNavigate()
+
+  const setUserSession = useUserSessionStore(state => state.setUserSession)
+
   const [email, setEmail] = useState()
 
   const [password, setPassword] = useState()
 
   const handleLogin = () => {
     postLoginUsers({ "email": email, "password": password })
-      .then((response) => console.log(response))
+      .then((response) => {
+        setUserSession(response.data.user)
+
+        navigate("/dashboard", { replace: true })
+      })
   }
 
   return (
